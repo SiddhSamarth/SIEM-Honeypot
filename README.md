@@ -1,14 +1,16 @@
 # Cloud Threat Telemetry & SIEM Honeypot Geolocation Dashboard
 
-Deploying an intentionally exposed Azure Windows VM honeypot, harvesting real-world RDP brute-force telemetry (Event ID 4625), and visualizing global attack origins using Microsoft Sentinel Workbooks and KQL.
+Deploying an exposed Azure Windows virtual machine honeypot to capture RDP brute-force telemetry (Event ID 4625) and visualize global attack origin distribution using Microsoft Sentinel Workbooks and KQL.
 
 ---
 
-## Overview
+## Scope & Lab Environment
 
-Exposing an unhardened endpoint to the public Internet yields an immediate, relentless barrage of automated port scans, brute-force dictionary attacks, and exploit payloads. Understanding how threat actors discover and probe perimeter services is essential for SOC analysts and detection engineers.
-
-This project documents the end-to-end deployment of an **Azure-based Windows Virtual Machine honeypot**. With Windows Defender Firewall intentionally disabled and Network Security Group (NSG) inbound rules set to allow all traffic, the machine served as a live telemetry sink. A PowerShell daemon harvested Windows Security Event 4625 records (Failed Logon Attempts), resolved attacker IPs to geographical coordinates via `ipgeolocation.io`, and forwarded enriched logs into Azure Log Analytics. Using Microsoft Sentinel Workbooks and KQL, attack vectors were mapped geographically across the globe.
+* **Target Host:** Azure Windows Virtual Machine with RDP (port 3389) exposed to the public Internet and host firewall disabled.
+* **Telemetry Collected:** Windows Security Event Log (Event ID 4625 - An account failed to log on).
+* **Enrichment:** PowerShell script harvesting failed logons and querying `ipgeolocation.io` API for latitude, longitude, and country metadata.
+* **Ingestion & Visualization:** Custom Log Analytics table (`FAILED_RDP_WITH_GEO_CL`) aggregated via KQL and plotted in a Microsoft Sentinel Map Workbook.
+* **Exercise Provenance:** This repository documents a hands-on cloud honeypot deployment exercise. The honeypot architecture, PowerShell extraction methodology, and visual walkthrough material are adapted from lab coursework by Larry ([@laaaaaarry](https://github.com/laaaaaarry/SIEM-Honeypot)). Configuration notes and KQL queries are documented below for technical reference.
 
 ---
 
