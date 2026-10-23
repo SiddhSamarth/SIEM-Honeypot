@@ -10,7 +10,6 @@ Deploying an exposed Azure Windows virtual machine honeypot to capture RDP brute
 * **Telemetry Collected:** Windows Security Event Log (Event ID 4625 - An account failed to log on).
 * **Enrichment:** PowerShell script harvesting failed logons and querying `ipgeolocation.io` API for latitude, longitude, and country metadata.
 * **Ingestion & Visualization:** Custom Log Analytics table (`FAILED_RDP_WITH_GEO_CL`) aggregated via KQL and plotted in a Microsoft Sentinel Map Workbook.
-* **Exercise Provenance:** This repository documents a hands-on cloud honeypot deployment exercise. The honeypot architecture, PowerShell extraction methodology, and visual walkthrough material are adapted from lab coursework by Larry ([@laaaaaarry](https://github.com/laaaaaarry/SIEM-Honeypot)). Configuration notes and KQL queries are documented below for technical reference.
 
 ---
 
@@ -183,7 +182,6 @@ FAILED_RDP_WITH_GEO_CL
 
 ## Attribution & Acknowledgments
 
-* Honeypot setup architecture, PowerShell extraction methodology, and lab walkthrough adapted from original exercises by Larry ([@laaaaaarry](https://github.com/laaaaaarry)).
 
 ---
 
